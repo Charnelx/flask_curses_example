@@ -14,7 +14,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('EXAPP_SETTINGS', silent=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/db.db'
-app.config['DATABASE'] = app.config['SQLALCHEMY_DATABASE_URI'].split('///')[1]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # initialize sqlalchemy with context of current app
