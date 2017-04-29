@@ -1,0 +1,32 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | Scraper</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-1.12.0.min.js') }}"></script>
+<div class="page">
+  <h1>Flask test app</h1>
+  <div class="navigation">
+  {% if g.user %}
+    <a href="{{ url_for('home_page') }}">home</a> |
+    <a href="{{ url_for('logout') }}">logout [{{ g.user.username }}]</a>
+  {% else %}
+    <a href="{{ url_for('home_page') }}">home</a> |
+    <a href="{{ url_for('register') }}">register</a> |
+    <a href="{{ url_for('login') }}">login</a>
+  {% endif %}
+  </div>
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class="flashes">
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <div class="body">
+  {% block body %}{% endblock %}
+  </div>
+  <div class="footer">
+    Flask application
+  </div>
+</div>
