@@ -6,7 +6,7 @@ from werkzeug import check_password_hash, generate_password_hash
 from werkzeug.routing import BaseConverter
 
 # app settings
-DATABASE = 'db/db.db'
+# DATABASE = 'db/db.db'
 PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'key123'
@@ -15,6 +15,7 @@ SECRET_KEY = 'key123'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('EXAPP_SETTINGS', silent=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/db.db'
 
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
@@ -46,7 +47,7 @@ def get_db():
     """
     top = _app_ctx_stack.top
     if not hasattr(top, 'sqlite_db'):
-        top.sqlite_db = sqlite3.connect(app.config['DATABASE'])
+        top.sqlite_db = sqlite3.connect(app.config['SQLALCHEMY_DATABASE_URI'])
         top.sqlite_db.row_factory = sqlite3.Row
     return top.sqlite_db
 
