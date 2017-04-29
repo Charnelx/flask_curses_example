@@ -47,10 +47,21 @@ class Authors(db.Model):
         return '<User nick: %r>' % self.nickname
 
 if __name__ == '__main__':
+    db.create_all()
+
     user1 = Authors('Борман')
     user2 = Authors('Nashorn')
     user3 = Authors('ati76')
 
-    Topics(user1, 'HP 15-ah155n', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=128672')
-    Topics(user2, 'Видеокарту MSI N680GTX Lightning 2GB', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=172547')
-    Topics(user3, 'Кулер Scythe Mugen 3', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=173926')
+    topic1 = Topics(user1, 'HP 15-ah155n', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=128672')
+    topic2 = Topics(user2, 'Видеокарту MSI N680GTX Lightning 2GB', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=172547')
+    topic3 = Topics(user3, 'Кулер Scythe Mugen 3', 'http://forum.overclockers.ua/viewtopic.php?f=26&t=173926')
+
+    db.session.add(user1)
+    db.session.add(user2)
+    db.session.add(user3)
+    db.session.add(topic1)
+    db.session.add(topic2)
+    db.session.add(topic3)
+
+    db.session.commit()
