@@ -13,10 +13,18 @@ var DynamicSearch = React.createClass({displayName: "DynamicSearch",
   },
 
   async loadArticles() {
+       var csrftoken = $('meta[name=csrf-token]').attr('content');
+       // console.log(csrftoken);
+
        this.setState({
            data: await fetch("/", {
-                    credentials: 'include',
                     method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrftoken
+                    },
+                    credentials: 'include',
                     body: JSON.stringify({})
         }).then(response =>response.json())
        })

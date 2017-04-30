@@ -1,6 +1,7 @@
 from functools import wraps
 from flask import Flask, request, session, url_for, redirect, \
      render_template, g, flash, jsonify
+from flask_wtf.csrf import CSRFProtect
 from werkzeug import check_password_hash, generate_password_hash
 from werkzeug.routing import BaseConverter
 from scraper_app.models import db, User, Topics, Authors, lower
@@ -11,6 +12,7 @@ SECRET_KEY = 'key123'
 
 # app initialisation
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 app.config.from_object(__name__)
 app.config.from_envvar('EXAPP_SETTINGS', silent=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/db.db'
@@ -64,6 +66,7 @@ def detail(id):
 @login_required
 def get_topics():
     '''Return all topics to React component'''
+
     topics = Topics.query.all()
     topics_list = []
     for topic in topics:

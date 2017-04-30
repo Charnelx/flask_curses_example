@@ -1,5 +1,6 @@
 <!doctype html>
 <title>{% block title %}Welcome{% endblock %} | Scraper</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.slim.js') }}"></script>
 <div class="page">

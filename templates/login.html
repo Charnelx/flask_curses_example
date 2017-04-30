@@ -11,6 +11,7 @@
       <dt>Password:
       <br>
       <input type="password" name="password" size="30">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     </dl>
     <div class="actions"><input type="submit" value="Login"></div>
   </form>
