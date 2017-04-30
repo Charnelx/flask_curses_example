@@ -60,26 +60,28 @@ def detail(id):
     topic = Topics.query.filter_by(_id = id).first_or_404()
     return jsonify({'id': id, 'title': topic.title, 'author': topic.author.nickname, 'url': topic.url})
 
+@app.route('/', methods=['POST'])
+@login_required
+def get_topics():
+    '''Return all topics to React component'''
+    topics = Topics.query.all()
+    topics_list = []
+    for topic in topics:
+        t = {
+            "author": topic.author.nickname,
+            "title": topic.title,
+            "url": topic.url
+        }
+        topics_list.append(t)
+
+    data = {'result': topics_list}
+    return jsonify(data)
+
 @app.route('/', methods=['GET'])
 @login_required
 def home_page():
-    """Displays topics"""
-    if request.method == 'GET':
-        topics = Topics.query.all()
-        return render_template('index.html', topics=topics)
-
-@app.route('/', methods=['POST'])
-@login_required
-def home_page_post():
-    """Render results"""
-    if request.method == 'POST':
-        topics = []
-        search_query = request.form['text']
-        if search_query:
-            like_str = '%' + search_query + '%'
-            topics = Topics.query.join(Authors).filter(
-                (Authors.nickname.ilike(like_str)) | (Topics.title.ilike(like_str)))
-    return render_template('results.html', topics=topics)
+    '''Simply just a home page'''
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -107,7 +109,6 @@ def logout():
         # clear user session to prevent recognition of current user
         session.clear()
     return redirect(url_for('login'))
-
 
 
 @app.route('/register', methods=['GET', 'POST'])

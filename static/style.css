@@ -105,6 +105,16 @@ div.page ul.messages li {
     min-height: 48px;
 }
 
+ul.messages div li {
+    margin: 10px 0;
+    padding: 5px;
+    background: #F0FAF9;
+    border: 1px solid #DBF3F1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    min-height: 48px;
+}
+
 div.page ul.messages p {
     margin: 0;
 }
