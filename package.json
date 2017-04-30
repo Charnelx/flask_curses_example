@@ -1,0 +1,22 @@
+{
+  "name": "flask_ex",
+  "version": "1.0.0",
+  "description": "Example of Flask and React stack usage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Charnelx/flask_curses_example.git"
+  },
+  "author": "Igor Khitrikh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Charnelx/flask_curses_example/issues"
+  },
+  "homepage": "https://github.com/Charnelx/flask_curses_example#readme",
+  "devDependencies": {
+    "bower": "^1.8.0"
+  }
+}

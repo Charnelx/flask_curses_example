@@ -8,6 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+node_modules/
+npm-debug.log
+bower_components/
+.module-cache
 env/
 build/
 develop-eggs/

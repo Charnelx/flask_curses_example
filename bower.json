@@ -1,0 +1,17 @@
+{
+  "name": "flask_ex",
+  "homepage": "https://github.com/Charnelx/flask_curses_example",
+  "authors": [
+    "Acheron <acheron.igor.b@gmail.com>"
+  ],
+  "description": "Example of Flask and React stack usage",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
