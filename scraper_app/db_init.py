@@ -26,6 +26,8 @@ if __name__ == '__main__':
 
         db.session.commit()
 
+
+
         '''Queries on related fields example'''
         # topics = Topics.query.all()
         # for topic in topics:
