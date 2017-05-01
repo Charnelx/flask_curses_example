@@ -5,6 +5,7 @@ from flask_wtf.csrf import CSRFProtect
 from werkzeug import check_password_hash, generate_password_hash
 from werkzeug.routing import BaseConverter
 from scraper_app.models import db, User, Topics, Authors, lower
+from flask_migrate import Migrate
 
 # app settings
 DEBUG = True
@@ -20,6 +21,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # initialize sqlalchemy with context of current app
 db.init_app(app)
+
+# initialize db migration
+migrate = Migrate(db=db, app=app)
 
 # regex custom routing converter
 class RegexConverter(BaseConverter):

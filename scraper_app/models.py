@@ -12,11 +12,17 @@ class User(db.Model):
     username = db.Column(db.String(128))
     email = db.Column(db.Text)
     pw_hash = db.Column(db.Text)
+    temp_field = db.Column(db.Text, default='test')
 
-    def __init__(self, username, email, pw_hash):
+    def __init__(self, username, email, pw_hash, temp_filed=None):
         self.username = username
         self.email = email
         self.pw_hash = pw_hash
+        if not temp_filed:
+            # search for column default value
+            self.temp_filed = self.__table__.c.temp_field.default.arg
+        else:
+            self.temp_filed = self.temp_filed
 
     def __repr__(self):
         return '<User %r>' % self.username
